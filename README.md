@@ -20,6 +20,10 @@ Code style
 * [ ] Always check _all_ your HTML files with the [HTML validator](https://validator.w3.org/)
 * [ ] Always check _all_ your CSS files with the [CSS validator](http://jigsaw.w3.org/css-validator/)
 
+Other
+
+* [ ] Make sure to push your solutions to GitHub. Always check your GitHub's project page to see if everything is pushed correctly.
+
 It is also possible to check your code style with a set of tools in the command line. These tools are called `linters`. Check out the [linter chapter](#linters) below to get more details on how to use them.
 
 ## Linters
@@ -33,20 +37,20 @@ Linters in software are tools that analyze and find problems in source code. The
 
 ### Setup
 
-Before you can start using these offline command line tools you need to make sure everything is ready, configured and installed. The following steps should be executed only once for every project.
+Before you can start using these offline command line tools you need to make sure everything is ready, configured and installed. The project already contains all the configuration, but the libraries need to be installed using the command line.
 
 #### Configuration files
 
 Before starting make sure the following files are available in your project directory:
 
 * `.gitignore`: Ignore packages with git. These should never be committed.
-* `package.json`: Configuration file containing all the packages that need to be installed. Defines the scripts that can be run
+* `package.json`: Configuration file containing all the packages that need to be installed. Defines the scripts that can be run and contains the JavaScript linter configuration
 * `.htmlhintrc`: Configuration for the HTML linter
 * `.stylelintrc.json`: Configuration for the CSS linter
-* `.eslintrc`: Configuration file for the JavaScript linter
-* `.travis.yml`: Automatically run the linters on GitHub as well. If all goes well, you earn a  ✔️ next to your commit.
+* `.markdownlint.json`: Configuration for the Markdown linter
+* `.github/`: Automatically run the linters on GitHub as well. If all goes well, you earn a  ✔️ next to your commit.
 
-First check with a `git pull ...` command to see if the teacher added the files to the project. If the files are not present, copy-paste them from this projects [configuration-files](./configuration-files) into your project directory.
+Be sure to have the latest updates pulled in your project. First check with a `git pull ...` command to see if the teacher added or changed the files to the project.
 
 #### NodeJS
 
@@ -128,6 +132,31 @@ if all goes well, you should get this output:
 
 If any errors or warnings are displayed, please fix them.
 
+#### Markdown
+
+```bash
+npm run markdown-lint
+```
+
+If all goes well you should get this output:
+
+```bash
+❯ npm run lint-markdown
+
+> @ lint-markdown D:\VIVES\my-project
+> markdownlint **/*.md
+```
+
+If any errors or warnings are displayed, please fix them.
+
+#### Running all the linters
+
+You can run all linters at once with the following command:
+
+```bash
+npm run all
+```
+
 ### Checks in VS Code
 
 It is also possible to see all violations, warnings and errors in Visual Studio Code. The messages are displayed in the `Problems` tab. You can toggle the problems tab with the `CTRL-SHIFT-M` shortkey.
@@ -136,17 +165,25 @@ It will show something like this:
 
 ![Lint checks in VS Code](img/vs-code-linter-output.jpg)
 
-In order to run the linters inside VS Code, you need to install the correct [Extensions](https://marketplace.visualstudio.com/). You can do this using the following commands in your command line.
+In order to run the linters inside VS Code, you need to install the correct [Extensions](https://marketplace.visualstudio.com/).
+
+* [HTMLHint](https://marketplace.visualstudio.com/items?itemName=mkaufman.HTMLHint)
+* [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
+* [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+* [Markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+
+You can install them using the commandline as well using the following commands.
 
 ```bash
 code --install-extension mkaufman.htmlhint
-code --install-extension dbaeumer.mkaufman.htmlhint
+code --install-extension stylelint.vscode-stylelint
 code --install-extension dbaeumer.vscode-eslint
+code --install-extension davidanson.vscode-markdownlint
 ```
 
 ### Checks on GitHub
 
-You can even run the linters when uploading (pushing) your code to GitHub. This is done automatically if an `.travis.yaml` is present in your project.
+You can even run the linters when uploading (pushing) your code to GitHub. This is done automatically if an `.github/workflows` is present in your project.
 
 It takes a minute or two to see the results. The results are shown next to your commit messages on GitHub.
 
@@ -159,3 +196,19 @@ Or in your commit history.
 ![Travis lint check result](img/travis-results-commits.jpg)
 
 This allows you to see when you introduce any problems, and when they are fixed.
+
+## Mergeconflict
+
+Please solve any mergeconflicts that may occur in your project.
+
+A mergeconflict might look like this:
+
+![Mergeconflict](./img/mergeconflict.png)
+
+Make the nesecairy changes in the sourcecode to get everything correctly formated. The result should look like this:
+
+![Mergeconflict correct result](img/mergeconflict-good-result.png)
+
+Note !
+
+You can always preview your Markdown files inside vscode using the `Markdown: Open Preview on the Side` command (press `F1` or `CTRL-SHIFT-P` to open the command window). You can also use the `CTRL-K V` shortkeys
