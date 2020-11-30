@@ -135,7 +135,7 @@ If any errors or warnings are displayed, please fix them.
 #### Markdown
 
 ```bash
-npm run markdown-lint
+npm run lint-markdown
 ```
 
 If all goes well you should get this output:
